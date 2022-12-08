@@ -1,0 +1,16 @@
+[root@kubernetes-server-kr2 ~]# cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+[root@kubernetes-server-kr2 ~]# yum install -y kubectl
+
+//yum-utils device-mapper-persistent-data lvm2는 이미 설치가 되어있어서 따로 설치해줄 필요가 없었습니다.
+
+[root@kubernetes-server-kr2 ~]# yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+[root@kubernetes-server-kr2 ~]# yum install -y docker-ce
+[root@kubernetes-server-kr2 ~]# systemctl enable --now docker
